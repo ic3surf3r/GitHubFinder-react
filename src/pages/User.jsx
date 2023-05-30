@@ -1,4 +1,10 @@
-import { FaCodepen, FaStore, FaUserFriends, FaUsers } from "react-icons/fa";
+import {
+  FaCode,
+  FaCodepen,
+  FaStore,
+  FaUserFriends,
+  FaUsers,
+} from "react-icons/fa";
 import { useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -72,6 +78,88 @@ function User() {
                 >
                   Visit Github Profile
                 </a>
+              </div>
+            </div>
+
+            <div className="w-full rounded-lg shadow-md bg-base-100 stats overflow-visible">
+              {location && (
+                <div className="stat">
+                  <div className="stat-title text-xs lg:text-base">
+                    Location
+                  </div>
+                  <div className="text-sm stat-value lg:text-lg">
+                    {location}
+                  </div>
+                </div>
+              )}
+              {blog && (
+                <div className="stat">
+                  <div className="stat-title text-xs lg:text-base">Website</div>
+                  <div className="text-sm stat-value lg:text-lg">
+                    <a
+                      href={`https://${blog}`}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {blog}
+                    </a>
+                  </div>
+                </div>
+              )}
+              {twitter_username && (
+                <div className="stat">
+                  <div className="stat-title text-xs lg:text-base">Twitter</div>
+                  <div className="text-sm stat-value lg:text-lg">
+                    <a
+                      href={`https://twitter.com/${twitter_username}`}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {twitter_username}
+                    </a>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div className="w-full py-5 mb-6 rounded-lg shadow-md bg-base-100 stats">
+          <div className="grid grid-cols-1 md:grid-cols-2">
+            <div className="stat">
+              <div className="stat-figure text-secondary">
+                <FaUsers className="text-3xl md:text-5xl" />
+              </div>
+              <div className="stat-title pr-5">Followers</div>
+              <div className="stat-value pr-5 text-3xl md:text-3xl">
+                {followers}
+              </div>
+            </div>
+            <div className="stat">
+              <div className="stat-figure text-secondary">
+                <FaUserFriends className="text-3xl md:text-5xl" />
+              </div>
+              <div className="stat-title pr-5">Following</div>
+              <div className="stat-value pr-5 text-3xl md:text-3xl">
+                {following}
+              </div>
+            </div>
+            <div className="stat">
+              <div className="stat-figure text-secondary">
+                <FaCode className="text-3xl md:text-5xl" />
+              </div>
+              <div className="stat-title pr-5">Public Repos</div>
+              <div className="stat-value pr-5 text-3xl md:text-3xl">
+                {public_repos}
+              </div>
+            </div>
+            <div className="stat">
+              <div className="stat-figure text-secondary">
+                <FaStore className="text-3xl md:text-5xl" />
+              </div>
+              <div className="stat-title pr-5">Public Gists</div>
+              <div className="stat-value pr-5 text-3xl md:text-3xl">
+                {public_gists}
               </div>
             </div>
           </div>
