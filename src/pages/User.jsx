@@ -1,6 +1,7 @@
 import {
   FaCode,
   FaCodepen,
+  FaDumpster,
   FaStore,
   FaUserFriends,
   FaUsers,
@@ -11,15 +12,25 @@ import { Link } from "react-router-dom";
 import Spinner from "../components/layout/Spinner";
 import RepoList from "../components/repos/RepoList";
 import GithubContext from "../context/github/GithubContext";
+import { getUser, getRepos } from "../context/github/GithubActions";
 
 function User() {
-  const { getUser, user, loading, getRepos, repos } = useContext(GithubContext);
+  const { user, loading, repos, dispatch } = useContext(GithubContext);
 
   const params = useParams();
 
   useEffect(() => {
-    getUser(params.login);
-    getRepos(params.login);
+    dispatch({ type: "SET_LOADING" });
+    const getUserData = async () => {
+      const userData = await getUser(params.login);
+      dispatch({ type: "GET_USER", payload: userData });
+    };
+    getUserData();
+    const getUserRepos = async () => {
+      const repoData = await getRepos(params.login);
+      dispatch({ type: "GET_REPOS", payload: repoData });
+    };
+    getUserRepos();
   }, []);
 
   const {
@@ -29,8 +40,8 @@ function User() {
     location,
     bio,
     blog,
-    twitter_username,
     login,
+    twitter_username,
     html_url,
     followers,
     following,
